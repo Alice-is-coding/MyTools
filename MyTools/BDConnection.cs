@@ -8,10 +8,10 @@ namespace MyTools
     public class BDConnection
     {
         //propriétés
-        private String server;
-        private String bdd;
-        private String user;
-        private String pwd;
+        private static String server;
+        private static String bdd;
+        private static String user;
+        private static String pwd;
         private static MySqlConnection cnx;
         private static BDConnection maCnx = null;
         private static MySqlCommand cmd = null;
@@ -26,10 +26,10 @@ namespace MyTools
         private BDConnection(string server, string bdd, string user, string pwd)
         {
             //valorisation des propriétés privées
-            this.server = server;
-            this.bdd = bdd;
-            this.user = user;
-            this.pwd = pwd;
+            BDConnection.server = server;
+            BDConnection.bdd = bdd;
+            BDConnection.user = user;
+            BDConnection.pwd = pwd;
 
             //initialisation de la connexion à la base de données
             initConnection();
@@ -72,14 +72,14 @@ namespace MyTools
         /// <returns>String   la chaîne de connexion</returns>
         private String generateConnectionString()
         {
-            return "Server=" + this.server + ";Database=" + this.bdd + ";user id=" + user + ";Pwd=" + this.pwd + ";";
+            return "Server=" + BDConnection.server + ";Database=" + BDConnection.bdd + ";user id=" + user + ";Pwd=" + BDConnection.pwd + ";";
         }
 
         /// <summary>
         /// Destructeur appelé dès qu'il n'y a plus de référence sur un objet donné, 
         /// ou dans n'importe quel ordre pendant la séquence d'arrêt
         /// </summary>
-        public void destruct()
+        private void destruct()
         {
             cnx = null;
         }
