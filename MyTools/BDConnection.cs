@@ -5,9 +5,15 @@ using MySql.Data.MySqlClient;
 
 namespace MyTools
 {
+    /// <summary>
+    /// Classe BDConnection :
+    /// Permet de se connecter à une base de données MySql, 
+    /// et d'exécuter des requêtes basiques sur cette base de données :
+    /// des requêtes SELECT ou des requêtes d'administration (INSERT, UPDATE, DELETE).
+    /// </summary>
     public class BDConnection
     {
-        //propriétés
+        // Propriétés.
         private static String server;
         private static String bdd;
         private static String user;
@@ -17,45 +23,45 @@ namespace MyTools
         private static MySqlCommand cmd = null;
 
         /// <summary>
-        /// Constructeur privé, crée l'instance de MySqlConnection pour se connecter à la base de données
+        /// Constructeur privé, crée l'instance de MySqlConnection pour se connecter à la base de données.
         /// </summary>
-        /// <param name="server">nom du serveur (par exemple : localhost)</param>
-        /// <param name="bdd">nom de la base de données</param>
-        /// <param name="user">nom d'utilisateur</param>
-        /// <param name="pwd">mot de passe</param>
+        /// <param name="server">Nom du serveur (par exemple : localhost).</param>
+        /// <param name="bdd">Nom de la base de données.</param>
+        /// <param name="user">Nom d'utilisateur.</param>
+        /// <param name="pwd">Mot de passe.</param>
         private BDConnection(string server, string bdd, string user, string pwd)
         {
-            //valorisation des propriétés privées
+            // Valorisation des propriétés privées.
             BDConnection.server = server;
             BDConnection.bdd = bdd;
             BDConnection.user = user;
             BDConnection.pwd = pwd;
 
-            //initialisation de la connexion à la base de données
-            initConnection();
+            // Initialisation de la connexion à la base de données.
+            InitConnection();
 
         }
 
         /// <summary>
-        /// Initialise une nouvelle connexion à la base de données
+        /// Initialise une nouvelle connexion à la base de données.
         /// </summary>
-        private void initConnection()
+        private void InitConnection()
         {
             cnx = new MySqlConnection
             {
-                //chaîne de connexion à la BDD
-                ConnectionString = generateConnectionString()
+                // Chaîne de connexion à la BDD.
+                ConnectionString = GenerateConnectionString()
             };
         }
 
         /// <summary>
-        /// Fonction statique qui crée l'unique instance de la classe BDConnexion
+        /// Fonction statique qui crée l'unique instance de la classe BDConnexion.
         /// </summary>
-        /// <param name="server">nom du serveur (par exemple: localhost)</param>
-        /// <param name="bdd">nom de la base de données</param>
-        /// <param name="user">nom d'utilisateur</param>
-        /// <param name="pwd">mot de passe</param>
-        /// <returns>unique objet de la classe BDConnexion</returns>
+        /// <param name="server"> Nom du serveur (par exemple: localhost).</param>
+        /// <param name="bdd"> Nom de la base de données.</param>
+        /// <param name="user"> Nom d'utilisateur.</param>
+        /// <param name="pwd"> Mot de passe.</param>
+        /// <returns> Unique objet de la classe BDConnexion.</returns>
         public static BDConnection GetBDConnection(string server, string bdd, string user, string pwd)
         {
             Console.WriteLine("Initialisation de connexion...");
@@ -67,17 +73,17 @@ namespace MyTools
         }
 
         /// <summary>
-        /// Génère la chaîne de connexion à la base de données
+        /// Génère la chaîne de connexion à la base de données.
         /// </summary>
-        /// <returns>String   la chaîne de connexion</returns>
-        private String generateConnectionString()
+        /// <returns> La chaîne de connexion.</returns>
+        private String GenerateConnectionString()
         {
             return "Server=" + BDConnection.server + ";Database=" + BDConnection.bdd + ";user id=" + user + ";Pwd=" + BDConnection.pwd + ";";
         }
 
         /// <summary>
         /// Destructeur appelé dès qu'il n'y a plus de référence sur un objet donné, 
-        /// ou dans n'importe quel ordre pendant la séquence d'arrêt
+        /// ou dans n'importe quel ordre pendant la séquence d'arrêt.
         /// </summary>
         private void destruct()
         {
@@ -86,50 +92,60 @@ namespace MyTools
 
         /// <summary>
         /// Génère une nouvelle instance de la classe MySqlCommand 
-        /// commande pour pouvoir manipuler une base de données (la requête et la connexion correspondante)
+        /// commande pour pouvoir manipuler une base de données (contient la requête et la connexion correspondante).
         /// </summary>
-        /// <param name="myQuery">requête à exécuter sur la base de données</param>
-        /// <returns>nouvelle instance de la classe MySqlCommand crée pour répondre aux besoins d'une requête et une connexion à une BDD</returns>
+        /// <param name="myQuery"> Requête à exécuter sur la base de données.</param>
+        /// <returns> Nouvelle instance de la classe MySqlCommand crée pour répondre aux besoins d'une requête et une connexion à une BDD.</returns>
         private MySqlCommand GetNewMySqlCommand(string myQuery)
         {
             return new MySqlCommand(myQuery, cnx);
         }
 
         /// <summary>
-        /// Création d'une DataTable en fonction du résultat d'une requête stockée dans un curseur MySqlDataReader
+        /// Création d'une DataTable en fonction du résultat d'une requête stockée dans un curseur MySqlDataReader.
         /// </summary>
-        /// <param name="cursor">curseur contenant un résultat de requête</param>
-        /// <returns>la DataTable construite avec les valeurs du curseur</returns>
+        /// <param name="cursor"> Curseur contenant un résultat de requête.</param>
+        /// <returns> La DataTable construite avec les valeurs du curseur.</returns>
         private DataTable GetDataTable(MySqlDataReader cursor)
         {
-            //declarations 
-            DataTable table = new DataTable(); //création d'une table DataTable 
-            int i = 1; //compteur 
+            // Declarations.
+            // Création d'une table DataTable.
+            DataTable table = new DataTable();
+            // Compteur. 
+            int i = 1;
 
             while (cursor.Read())
             {
-                DataRow row = table.NewRow(); //création d'une ligne 
-                //si on est à la première ligne (compteur == 1)
+                // Création d'une ligne. 
+                DataRow row = table.NewRow(); 
+                // Si on est à la première ligne (compteur == 1) :
                 if (i == 1)
                 {
-                    //parcours des colonnes du curseur (FieldCount == Nb de colonne dans le curseur)
+                    // Parcours des colonnes du curseur (FieldCount == Nb de colonne dans le curseur).
                     for (int x = 0; x < cursor.FieldCount; x++)
                     {
-                        DataColumn column = new DataColumn(cursor.GetName(x).ToString()); //création d'une colonne ayant pour nom le nom de la colonne de la table dans la BDD
-                        table.Columns.Add(column); //ajout de la colonne à la DataTable 
-                        row[column.ColumnName] = cursor.GetValue(x).ToString(); //affectation d'une valeur à la cellule de la ligne correspondant à la colonne 
+                        // Création d'une colonne ayant pour nom le nom de la colonne de la table dans la BDD.
+                        DataColumn column = new DataColumn(cursor.GetName(x).ToString());
+                        // Ajout de la colonne à la DataTable.
+                        table.Columns.Add(column);
+                        // Affectation d'une valeur à la cellule de la ligne correspondant à la colonne.
+                        row[column.ColumnName] = cursor.GetValue(x).ToString(); 
                     }
-                    table.Rows.Add(row); //ajout de la ligne à la DataTable 
-                    i++; //incrémentation du compteur 
+                    // Ajout de la ligne à la DataTable.
+                    table.Rows.Add(row);
+                    // Incrémentation du compteur.
+                    i++;
                 }
                 else
                 {
-                    //nous sommes à ligne > 1 du curseur donc inutile d'ajouter des colonnes 
+                    // Nous sommes à ligne > 1 du curseur donc inutile d'ajouter des colonnes.
                     for (int x = 0; x < cursor.FieldCount; x++)
                     {
-                        row[table.Columns[x]] = cursor.GetValue(x).ToString(); //affectation d'une valeur à la cellule de la ligne correspondant à la colonne 
+                        // Affectation d'une valeur à la cellule de la ligne correspondant à la colonne.
+                        row[table.Columns[x]] = cursor.GetValue(x).ToString();  
                     }
-                    table.Rows.Add(row); //ajout de la ligne à la DataTable 
+                    // Ajout de la ligne à la DataTable.
+                    table.Rows.Add(row); 
                 }
             }
             return table; 
@@ -137,30 +153,33 @@ namespace MyTools
 
         /// <summary>
         /// Effectue une requête SELECT sur la base de données 
-        /// puis remplis un Dictionnaire : (clé : nomColonne, valeur : colonneValue)
+        /// puis remplis un Dictionnaire : (clé : nomColonne, valeur : colonneValue).
         /// </summary>
-        /// <param name="myQuery">Requête à exécuter</param>
-        /// <returns>Le Dictionnaire rempli avec le résultat de la requête</returns>
-        public DataTable reqSelect(string myQuery)
+        /// <param name="myQuery"> Requête à exécuter.</param>
+        /// <returns> Le Dictionnaire rempli avec le résultat de la requête.</returns>
+        public DataTable ReqSelect(string myQuery)
         {
-            //declaration  
-            var table = new DataTable();  //création d'une table DataTable                                      
-            MySqlDataReader cursor = null; //declaration de l'objet curseur 
-            //instanciation d'un nouvel objet de la classe MySqlCommand qui contiendra la requête et la connexion à la BDD
+            // Declarations.  
+            // Création d'une table DataTable.  
+            var table = new DataTable();
+            // Declaration de l'objet curseur.
+            MySqlDataReader cursor = null;  
+            // Instanciation d'un nouvel objet de la classe MySqlCommand qui contiendra la requête et la connexion à la BDD.
             cmd = GetNewMySqlCommand(myQuery);
 
             try
             {
-                //ouverture de connexion MySql
+                // Ouverture de connexion MySql.
                 cnx.Open();
                 Console.WriteLine("Connexion établie.");
 
-                //liaison DataReader avec la commande (requête)
+                // Liaison DataReader avec la commande (requête).
                 cursor = cmd.ExecuteReader();
 
-                //si le curseur n'est pas vide 
+                // Si le curseur n'est pas vide.
                 if (cursor.HasRows)
                 {
+                    // Valorisation de table avec une DataTable créée.
                     table = GetDataTable(cursor);
                 }
                 else
@@ -174,29 +193,30 @@ namespace MyTools
                 Console.WriteLine(e + "\n" + e.StackTrace);
             };
             Console.WriteLine("Fermeture de connexion...");
-            //fermeture du curseur
+            // Fermeture du curseur.
             cursor.Close();
-            //fermeture de la connexion MySql
+            // Fermeture de la connexion MySql.
             cnx.Close();
             Console.WriteLine("Connexion terminée.");
-            //on retourne le résultat de la requête sous forme d'un Dictionnaire
-            //return resultQuery;
+            // On retourne le résultat de la requête sous forme d'une DataTable.
             return table; 
         }
 
         /// <summary>
-        /// Exécute une requête d'administration de base de données (INSERT, UPDATE, DELETE)
+        /// Exécute une requête d'administration de base de données (INSERT, UPDATE, DELETE).
         /// </summary>
-        /// <param name="myQuery">requête à exécuter</param>
-        private void administrateBDD(string myQuery)
+        /// <param name="myQuery"> Requête à exécuter.</param>
+        private void AdministrateBDD(string myQuery)
         {
-            //instanciation d'un nouvel objet de la classe MySqlCommand qui contiendra la requête et la connexion à la BDD
+            // Instanciation d'un nouvel objet de la classe MySqlCommand qui contiendra la requête et la connexion à la BDD.
             cmd = GetNewMySqlCommand(myQuery);
 
             try
             {
+                // Connexion à la BDD en passant directement par l'objet Command cmd
                 cmd.Connection.Open();
                 Console.WriteLine("Connexion établie.");
+                // Exécution de la requête de modification (INSERT, UPDATE, ou DELETE).
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Requête exécutée.");
             }
@@ -205,142 +225,151 @@ namespace MyTools
                 Console.WriteLine("Une exception s'est produite... ");
                 Console.WriteLine(e + "\n" + e.StackTrace);
             }
+            // Fermeture de la connexion.
             Console.WriteLine("Fermeture de connexion...");
-            //fermeture de la connexion
             cmd.Connection.Close();
             Console.WriteLine("Connexion terminée.");
         }
 
         /// <summary>
-        /// Permet d'exécuter une requête INSERT 
+        /// Permet d'exécuter une requête INSERT. 
         /// </summary>
-        /// <param name="myQuery">requête à exécuter</param>
-        public void reqInsert(string myQuery) =>
-            //appel de la méthode qui s'occupera de l'exécution de la requête 
-            administrateBDD(myQuery);
+        /// <param name="myQuery"> Requête à exécuter.</param>
+        public void ReqInsert(string myQuery) =>
+            // Appel de la méthode qui s'occupera de l'exécution de la requête. 
+            AdministrateBDD(myQuery);
 
         /// <summary>
-        /// Permet d'exécuter une requête UPDATE 
+        /// Permet d'exécuter une requête UPDATE. 
         /// </summary>
-        /// <param name="myQuery">requête à exécuter</param>
-        public void reqUpdate(string myQuery) =>
-            //appel de la méthode qui s'occupera de l'exécution de la requête 
-            administrateBDD(myQuery);
+        /// <param name="myQuery"> Requête à exécuter.</param>
+        public void ReqUpdate(string myQuery) =>
+            // Appel de la méthode qui s'occupera de l'exécution de la requête. 
+            AdministrateBDD(myQuery);
 
         /// <summary>
-        /// Permet d'exécuter une requête DELETE 
+        /// Permet d'exécuter une requête DELETE. 
         /// </summary>
-        /// <param name="myQuery">requête à exécuter</param>
-        public void reqDelete(string myQuery) =>
-            //appel de la méthode qui s'occupera de l'exécution de la requête 
-            administrateBDD(myQuery);
+        /// <param name="myQuery"> Requête à exécuter.</param>
+        public void ReqDelete(string myQuery) =>
+            // Appel de la méthode qui s'occupera de l'exécution de la requête. 
+            AdministrateBDD(myQuery);
     }
 }
 
+/// <summary>
+/// Classe DateManagement : 
+/// Permet d'effectuer des actions basiques sur une date, 
+/// telles qu'obtenir le mois précédent, suivant, 
+/// ou de savoir si un jour se trouve entre deux jours.
+/// </summary>
 public abstract class DateManagement
 {
     /// <summary>
     /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois précédent 
-    /// par rapport à la date d'aujourd'hui
+    /// par rapport à la date d'aujourd'hui.
     /// </summary>
-    /// <returns>le mois précédent</returns>
+    /// <returns> Le mois précédent.</returns>
     public static string GetPreviousMonth() => GetPreviousMonth(DateTime.Today);
 
     /// <summary>
     /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois précédent 
-    /// par rapport à la date passée en paramètre
+    /// par rapport à la date passée en paramètre.
     /// </summary>
-    /// <param name="date">date pour laquelle on souhaite obtenir le mois précédent</param>
-    /// <returns>le mois précédent</returns>
+    /// <param name="date"> Date pour laquelle on souhaite obtenir le mois précédent.</param>
+    /// <returns> Le mois précédent.</returns>
     public static string GetPreviousMonth(DateTime date)
     {
-        //declarations 
+        // Declarations. 
         string month = date.Month.ToString();
 
-        //si date == Janvier
+        // Si date == Janvier :
         if(int.Parse(month) == 1)
         {
-            //mois précédent = Décembre
+            // Mois précédent = Décembre.
             month = 12.ToString();
         }else
         {
-            //sinon on décrémente de 1 la variable previousMonth
+            // Sinon on décrémente de 1 la variable month.
             month = (int.Parse(month)- 1).ToString();
         }
-        //test si la chaîne ne contient qu'un chiffre
+        // Test si la chaîne ne contient qu'un chiffre.
         if(month.Length == 1)
         {
-            //si la variable ne contient qu'un chiffre on ajoute 0 devant
+            // Si la variable ne contient qu'un chiffre on ajoute 0 devant.
             month = "0" + month;
         }
-        //on retourne le mois précédent
+        // On retourne le mois précédent.
         return month;
     }
 
     /// <summary>
-    /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois suivant 
-    /// par rapport à la date d'aujourd'hui
+    /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois suivant
+    /// par rapport à la date d'aujourd'hui.
     /// </summary>
-    /// <returns>le mois suivant</returns>
+    /// <returns> Le mois suivant.</returns>
     public static string GetNextMonth() => GetNextMonth(DateTime.Today);
 
     /// <summary>
-    /// Retourn sous forme d'une chaîne de 2 chiffres le numéro du mois suivant
-    /// par rapport à la date envoyée en paramètre
+    /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois suivant
+    /// par rapport à la date envoyée en paramètre.
     /// </summary>
-    /// <param name="date">date pour laquelle il faut obtenir le mois suivant</param>
-    /// <returns>le mois suivant</returns>
+    /// <param name="date"> Date pour laquelle il faut obtenir le mois suivant.</param>
+    /// <returns> Le mois suivant.</returns>
     public static string GetNextMonth(DateTime date)
     {
         string month = date.Month.ToString();
 
-        //si mois == Décembre
+        // Si mois == Décembre :
         if (int.Parse(month) == 12)
         {
-            //mois == Janvier
+            // Mois == Janvier.
             month = 1.ToString();
         }
         else
         {
-            //sinon incrémentation de 1 de la variable month
+            // Sinon incrémentation de 1 de la variable month.
             month = (int.Parse(month) + 1).ToString();
         }
-        //si month ne contient qu'un chiffre
+        // Si month ne contient qu'un chiffre :
         if (month.Length == 1)
         {
-            //ajout de 0 devant le chiffre
+            // Ajout de 0 devant le chiffre.
             month = "0" + month;
         }
-        //on retourne le mois suivant
+        // On retourne le mois suivant.
         return month;
     }
 
     /// <summary>
-    /// Distingue si la date du jour se trouve entre deux jours passés en paramètre
+    /// Distingue si la date du jour se trouve entre deux jours passés en paramètre.
     /// </summary>
-    /// <param name="day1">interval1 (numéro de jour)</param>
-    /// <param name="day2">interval2 (numéro de jour)</param>
-    /// <returns>vrai si le jour de la date actuelle se situe entre les deux intervalles faux sinon</returns>
-    public static bool entre(int day1, int day2) => between(day1, day2, DateTime.Today);
+    /// <param name="day1"> Interval1 (numéro de jour).</param>
+    /// <param name="day2"> Interval2 (numéro de jour).</param>
+    /// <returns> Vrai si le jour de la date actuelle se situe entre les deux intervalles faux sinon.</returns>
+    public static bool Between(int day1, int day2) => Between(day1, day2, DateTime.Today);
 
     /// <summary>
-    /// Distingue si la date passée en paramètre se trouve entre deux jours également passés en paramètre
+    /// Distingue si la date passée en paramètre se trouve entre deux jours également passés en paramètre.
     /// </summary>
-    /// <param name="day1">interval1 (numéro de jour)</param>
-    /// <param name="day2">interval2 (numéro de jour)</param>
-    /// <param name="date">date pour laquelle le jour est à tester</param>
-    /// <returns>vrai si le jour de la date se trouve entre les deux intervalles faux sinon</returns>
-    public static bool between(int day1, int day2, DateTime date)
+    /// <param name="day1"> Interval1 (numéro de jour).</param>
+    /// <param name="day2"> Interval2 (numéro de jour).</param>
+    /// <param name="date"> Date pour laquelle le jour est à tester.</param>
+    /// <returns> Vrai si le jour de la date se trouve entre les deux intervalles faux sinon.</returns>
+    public static bool Between(int day1, int day2, DateTime date)
     {
-        //declarations
-        int day = date.Day; //valorisé avec le jour de la date passée en paramètre
+        // Declarations.
+        // Variable day valorisé avec le jour de la date passée en paramètre.
+        int day = date.Day; 
 
-        //si le jour se trouve entre min jour et max jour
-        if(day > Math.Min(day1, day2) && day < Math.Max(day1, day2))
+        // Si le jour se trouve entre min jour et max jour :
+        if((day > Math.Min(day1, day2)) && (day < Math.Max(day1, day2)))
         {
+            // On retourne vrai.
             return true; 
         }else
         {
+            // Sinon on retourne faux.
             return false; 
         }
     }
