@@ -215,30 +215,133 @@ namespace MyTools
         /// Permet d'exécuter une requête INSERT 
         /// </summary>
         /// <param name="myQuery">requête à exécuter</param>
-        public void reqInsert(string myQuery)
-        {
+        public void reqInsert(string myQuery) =>
             //appel de la méthode qui s'occupera de l'exécution de la requête 
             administrateBDD(myQuery);
-        }
 
         /// <summary>
         /// Permet d'exécuter une requête UPDATE 
         /// </summary>
         /// <param name="myQuery">requête à exécuter</param>
-        public void reqUpdate(string myQuery)
-        {
+        public void reqUpdate(string myQuery) =>
             //appel de la méthode qui s'occupera de l'exécution de la requête 
             administrateBDD(myQuery);
-        }
 
         /// <summary>
         /// Permet d'exécuter une requête DELETE 
         /// </summary>
         /// <param name="myQuery">requête à exécuter</param>
-        public void reqDelete(string myQuery)
-        {
+        public void reqDelete(string myQuery) =>
             //appel de la méthode qui s'occupera de l'exécution de la requête 
             administrateBDD(myQuery);
+    }
+}
+
+public abstract class DateManagement
+{
+    /// <summary>
+    /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois précédent 
+    /// par rapport à la date d'aujourd'hui
+    /// </summary>
+    /// <returns>le mois précédent</returns>
+    public static string GetPreviousMonth() => GetPreviousMonth(DateTime.Today);
+
+    /// <summary>
+    /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois précédent 
+    /// par rapport à la date passée en paramètre
+    /// </summary>
+    /// <param name="date">date pour laquelle on souhaite obtenir le mois précédent</param>
+    /// <returns>le mois précédent</returns>
+    public static string GetPreviousMonth(DateTime date)
+    {
+        //declarations 
+        string month = date.Month.ToString();
+
+        //si date == Janvier
+        if(int.Parse(month) == 1)
+        {
+            //mois précédent = Décembre
+            month = 12.ToString();
+        }else
+        {
+            //sinon on décrémente de 1 la variable previousMonth
+            month = (int.Parse(month)- 1).ToString();
+        }
+        //test si la chaîne ne contient qu'un chiffre
+        if(month.Length == 1)
+        {
+            //si la variable ne contient qu'un chiffre on ajoute 0 devant
+            month = "0" + month;
+        }
+        //on retourne le mois précédent
+        return month;
+    }
+
+    /// <summary>
+    /// Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois suivant 
+    /// par rapport à la date d'aujourd'hui
+    /// </summary>
+    /// <returns>le mois suivant</returns>
+    public static string GetNextMonth() => GetNextMonth(DateTime.Today);
+
+    /// <summary>
+    /// Retourn sous forme d'une chaîne de 2 chiffres le numéro du mois suivant
+    /// par rapport à la date envoyée en paramètre
+    /// </summary>
+    /// <param name="date">date pour laquelle il faut obtenir le mois suivant</param>
+    /// <returns>le mois suivant</returns>
+    public static string GetNextMonth(DateTime date)
+    {
+        string month = date.Month.ToString();
+
+        //si mois == Décembre
+        if (int.Parse(month) == 12)
+        {
+            //mois == Janvier
+            month = 1.ToString();
+        }
+        else
+        {
+            //sinon incrémentation de 1 de la variable month
+            month = (int.Parse(month) + 1).ToString();
+        }
+        //si month ne contient qu'un chiffre
+        if (month.Length == 1)
+        {
+            //ajout de 0 devant le chiffre
+            month = "0" + month;
+        }
+        //on retourne le mois suivant
+        return month;
+    }
+
+    /// <summary>
+    /// Distingue si la date du jour se trouve entre deux jours passés en paramètre
+    /// </summary>
+    /// <param name="day1">interval1 (numéro de jour)</param>
+    /// <param name="day2">interval2 (numéro de jour)</param>
+    /// <returns>vrai si le jour de la date actuelle se situe entre les deux intervalles faux sinon</returns>
+    public static bool entre(int day1, int day2) => between(day1, day2, DateTime.Today);
+
+    /// <summary>
+    /// Distingue si la date passée en paramètre se trouve entre deux jours également passés en paramètre
+    /// </summary>
+    /// <param name="day1">interval1 (numéro de jour)</param>
+    /// <param name="day2">interval2 (numéro de jour)</param>
+    /// <param name="date">date pour laquelle le jour est à tester</param>
+    /// <returns>vrai si le jour de la date se trouve entre les deux intervalles faux sinon</returns>
+    public static bool between(int day1, int day2, DateTime date)
+    {
+        //declarations
+        int day = date.Day; //valorisé avec le jour de la date passée en paramètre
+
+        //si le jour se trouve entre min jour et max jour
+        if(day > Math.Min(day1, day2) && day < Math.Max(day1, day2))
+        {
+            return true; 
+        }else
+        {
+            return false; 
         }
     }
 }
