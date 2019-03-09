@@ -37,6 +37,8 @@ namespace MyToolsTests
         [InlineData(10, 8, 9, true)]
         [InlineData(10, 8, 5, false)]
         [InlineData(15, 30, 22, true)]
+        [InlineData(1, 10, 1, true)]
+        [InlineData(1, 10, 10, true)]
         public void Between(int day1, int day2, int day, bool expectedResult)
         {
             // Act. 
