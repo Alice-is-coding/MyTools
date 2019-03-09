@@ -85,9 +85,9 @@ namespace MyTools
         /// Destructeur appelé dès qu'il n'y a plus de référence sur un objet donné, 
         /// ou dans n'importe quel ordre pendant la séquence d'arrêt.
         /// </summary>
-        private void destruct()
+        ~BDConnection()
         {
-            cnx = null;
+            Console.WriteLine("Destructeur appelé !");
         }
 
         /// <summary>
@@ -363,7 +363,7 @@ namespace MyTools
             int day = date.Day;
 
             // Si le jour se trouve entre min jour et max jour :
-            if ((day > Math.Min(day1, day2)) && (day < Math.Max(day1, day2)))
+            if ((day >= Math.Min(day1, day2)) && (day <= Math.Max(day1, day2)))
             {
                 // On retourne vrai.
                 return true;
