@@ -197,7 +197,7 @@ namespace MyTools
             cursor.Close();
             // Fermeture de la connexion MySql.
             cnx.Close();
-            Console.WriteLine("Connexion terminée.");
+            Console.WriteLine("Connexion terminée.\n");
             // On retourne le résultat de la requête sous forme d'une DataTable.
             return table; 
         }
@@ -216,9 +216,10 @@ namespace MyTools
                 // Connexion à la BDD en passant directement par l'objet Command cmd
                 cmd.Connection.Open();
                 Console.WriteLine("Connexion établie.");
-                // Exécution de la requête de modification (INSERT, UPDATE, ou DELETE).
-                cmd.ExecuteNonQuery();
-                Console.WriteLine("Requête exécutée.");
+                // Exécution de la requête de modification (INSERT, UPDATE, ou DELETE) et stockage dans la variable retVal,
+                // qui, en plus d'exécuter la requête, contient le nombre de lignes affectées par la requête.
+                var retVal = cmd.ExecuteNonQuery();
+                Console.WriteLine("Requête exécutée. \nNombre de lignes affectées : "+ retVal);
             }
             catch (Exception e)
             {
@@ -228,7 +229,7 @@ namespace MyTools
             // Fermeture de la connexion.
             Console.WriteLine("Fermeture de connexion...");
             cmd.Connection.Close();
-            Console.WriteLine("Connexion terminée.");
+            Console.WriteLine("Connexion terminée.\n");
         }
 
         /// <summary>
