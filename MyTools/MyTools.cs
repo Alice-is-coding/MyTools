@@ -1,4 +1,12 @@
-﻿using System;
+﻿/**
+ * Script : Bibliothèque de classes contenant un ensemble d'outils utiles et réutilisables : connexion à une base de données MySql et gestion de base de données MySql, opérations basiques sur les dates.
+ * Author : Alice BORD
+ * Email : alice.bord1@gmail.com
+ * Date : 31/03/2019
+ */
+
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
@@ -64,7 +72,7 @@ namespace MyTools
         /// <returns> Unique objet de la classe BDConnexion.</returns>
         public static BDConnection GetBDConnection(string server, string bdd, string user, string pwd)
         {
-            Console.WriteLine("Initialisation de connexion...");
+            //Console.WriteLine("Initialisation de connexion...");
             if (maCnx == null)
             {
                 maCnx = new BDConnection(server, bdd, user, pwd);
@@ -87,7 +95,7 @@ namespace MyTools
         /// </summary>
         ~BDConnection()
         {
-            Console.WriteLine("Destructeur appelé !");
+            //Console.WriteLine("Destructeur appelé !");
         }
 
         /// <summary>
@@ -117,7 +125,7 @@ namespace MyTools
             while (cursor.Read())
             {
                 // Création d'une ligne. 
-                DataRow row = table.NewRow(); 
+                DataRow row = table.NewRow();
                 // Si on est à la première ligne (compteur == 1) :
                 if (i == 1)
                 {
@@ -129,7 +137,7 @@ namespace MyTools
                         // Ajout de la colonne à la DataTable.
                         table.Columns.Add(column);
                         // Affectation d'une valeur à la cellule de la ligne correspondant à la colonne.
-                        row[column.ColumnName] = cursor.GetValue(x).ToString(); 
+                        row[column.ColumnName] = cursor.GetValue(x).ToString();
                     }
                     // Ajout de la ligne à la DataTable.
                     table.Rows.Add(row);
@@ -142,13 +150,13 @@ namespace MyTools
                     for (int x = 0; x < cursor.FieldCount; x++)
                     {
                         // Affectation d'une valeur à la cellule de la ligne correspondant à la colonne.
-                        row[table.Columns[x]] = cursor.GetValue(x).ToString();  
+                        row[table.Columns[x]] = cursor.GetValue(x).ToString();
                     }
                     // Ajout de la ligne à la DataTable.
-                    table.Rows.Add(row); 
+                    table.Rows.Add(row);
                 }
             }
-            return table; 
+            return table;
         }
 
         /// <summary>
@@ -163,7 +171,7 @@ namespace MyTools
             // Création d'une table DataTable.  
             var table = new DataTable();
             // Declaration de l'objet curseur.
-            MySqlDataReader cursor = null;  
+            MySqlDataReader cursor = null;
             // Instanciation d'un nouvel objet de la classe MySqlCommand qui contiendra la requête et la connexion à la BDD.
             cmd = GetNewMySqlCommand(myQuery);
 
@@ -185,7 +193,7 @@ namespace MyTools
                 else
                 {
                     Console.WriteLine("0 lignes retournées...");
-                }             
+                }
             }
             catch (Exception e)
             {
@@ -199,44 +207,56 @@ namespace MyTools
             cnx.Close();
             Console.WriteLine("Connexion terminée.\n");
             // On retourne le résultat de la requête sous forme d'une DataTable.
-            return table; 
+            return table;
         }
 
         /// <summary>
         /// Exécute une requête d'administration de base de données (INSERT, UPDATE, DELETE).
         /// </summary>
         /// <param name="myQuery"> Requête à exécuter.</param>
-        private void AdministrateBDD(string myQuery)
+        /// <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
+        private string AdministrateBDD(string myQuery)
         {
             // Instanciation d'un nouvel objet de la classe MySqlCommand qui contiendra la requête et la connexion à la BDD.
             cmd = GetNewMySqlCommand(myQuery);
+            // Chaîne qui sera retournée.
+            string txtResult = "";
 
             try
             {
                 // Connexion à la BDD en passant directement par l'objet Command cmd
                 cmd.Connection.Open();
-                Console.WriteLine("Connexion établie.");
+                //Console.WriteLine("Connexion établie.");
+                txtResult += "Connexion établie.\n";
                 // Exécution de la requête de modification (INSERT, UPDATE, ou DELETE) et stockage dans la variable retVal,
                 // qui, en plus d'exécuter la requête, contient le nombre de lignes affectées par la requête.
                 var retVal = cmd.ExecuteNonQuery();
-                Console.WriteLine("Requête exécutée. \nNombre de lignes affectées : "+ retVal);
+                //Console.WriteLine("Requête exécutée. \nNombre de lignes affectées : " + retVal);
+                txtResult += "Requête exécutée. \nNombre de lignes affectées : " + retVal + "\n";
             }
             catch (Exception e)
             {
-                Console.WriteLine("Une exception s'est produite... ");
-                Console.WriteLine(e + "\n" + e.StackTrace);
+                //Console.WriteLine("Une exception s'est produite... ");
+                txtResult += "Une exception s'est produite... \n";
+                //Console.WriteLine(e + "\n" + e.StackTrace);
+                txtResult += e + "\n" + e.StackTrace;
+                return txtResult;
             }
             // Fermeture de la connexion.
-            Console.WriteLine("Fermeture de connexion...");
+            //Console.WriteLine("Fermeture de connexion...");
+            txtResult += "Fermeture de connexion...\n";
             cmd.Connection.Close();
-            Console.WriteLine("Connexion terminée.\n");
+            //Console.WriteLine("Connexion terminée.\n");
+            txtResult += "Connexion terminée.\n";
+            return txtResult;
         }
 
         /// <summary>
         /// Permet d'exécuter une requête INSERT. 
         /// </summary>
         /// <param name="myQuery"> Requête à exécuter.</param>
-        public void ReqInsert(string myQuery) =>
+        /// <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
+        public string ReqInsert(string myQuery) =>
             // Appel de la méthode qui s'occupera de l'exécution de la requête. 
             AdministrateBDD(myQuery);
 
@@ -244,7 +264,8 @@ namespace MyTools
         /// Permet d'exécuter une requête UPDATE. 
         /// </summary>
         /// <param name="myQuery"> Requête à exécuter.</param>
-        public void ReqUpdate(string myQuery) =>
+        /// <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
+        public string ReqUpdate(string myQuery) =>
             // Appel de la méthode qui s'occupera de l'exécution de la requête. 
             AdministrateBDD(myQuery);
 
@@ -252,6 +273,7 @@ namespace MyTools
         /// Permet d'exécuter une requête DELETE. 
         /// </summary>
         /// <param name="myQuery"> Requête à exécuter.</param>
+        /// <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
         public void ReqDelete(string myQuery) =>
             // Appel de la méthode qui s'occupera de l'exécution de la requête. 
             AdministrateBDD(myQuery);
@@ -377,5 +399,82 @@ namespace MyTools
         }
     }
 
+    /// <summary>
+    /// Classe DirAppend. 
+    /// Permet de gérer un système de log en permettant l'écriture dans un ficher txt servant de log.
+    /// </summary>
+    public abstract class DirAppend
+    {
+        /// <summary>
+        /// Permet d'afficher le contenu du fichier dont le nom est passé en param.
+        /// </summary>
+        /// <param name="fileNamePlusExtension">Nom du fichier à ouvrir.</param>
+        public static void ShowLog(String fileNamePlusExtension)
+        {
+            using (StreamReader r = File.OpenText(fileNamePlusExtension))
+            {
+                DumpLog(r);
+            }
+        }
+
+        /// <summary>
+        /// Ajoute du texte à un fichier existant.
+        /// </summary>
+        /// <param name="path">Chemin vers le fichier.</param>
+        /// <param name="logMessage">Informations à écire dans le fichier.</param>
+        public static void AppendText(String path, String logMessage)
+        {
+            using (var sw = File.AppendText(path))
+            {
+                Log(logMessage, sw);
+            }
+        }
+
+        /// <summary>
+        /// Ecriture dans un fichier d'un chemin précis.
+        /// </summary>
+        /// <param name="path">Chemin vers le fichier.</param>
+        /// <param name="logMessage">Informations à écrire dans le fichier.</param>
+        public static void WriteLog(String path, String logMessage)
+        {
+            if (!File.Exists(path))
+            {
+                using (var sw = File.CreateText(path))
+                {
+                    Log(logMessage, sw);
+                }
+            } else
+            {
+                AppendText(path, logMessage);
+            }
+        }
+
+        /// <summary>
+        /// Ecriture d'informations dans un fichier de logs.
+        /// </summary>
+        /// <param name="logMessage">Message à écrire dans le fichier.</param>
+        /// <param name="w">Contient le fichier dans lequel il faut écrire.</param>
+        public static void Log(string logMessage, TextWriter w)
+        {
+            w.Write("\r\nLog Entry : ");
+            w.WriteLine($"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}");
+            w.WriteLine("  :");
+            w.WriteLine($"  :{logMessage}");
+            w.WriteLine("-------------------------------");
+        }
+
+        /// <summary>
+        /// Permet d'afficher le contenu d'un fichier de logs.
+        /// </summary>
+        /// <param name="r">Permet d'accéder au contenu de la ligne.</param>
+        public static void DumpLog(StreamReader r)
+        {
+            string line;
+            while ((line = r.ReadLine()) != null)
+            {
+                Console.WriteLine(line);
+            }
+        }
+    }
 }
 

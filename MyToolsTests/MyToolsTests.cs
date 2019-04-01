@@ -1,3 +1,10 @@
+/**
+ * Script : Jeux de tests pour la bibliothèque de classes MyTools, en particulier en ce qui concerne les opérations sur les dates.
+ * Author : Alice BORD
+ * Email : alice.bord1@gmail.com
+ * Date : 31/03/2019
+ */
+
 using System;
 using Xunit;
 using MyTools;

@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyTools</name>
+    </assembly>
+    <members>
+        <member name="T:MyTools.BDConnection">
+            <summary>
+            Classe BDConnection :
+            Permet de se connecter à une base de données MySql, 
+            et d'exécuter des requêtes basiques sur cette base de données :
+            des requêtes SELECT ou des requêtes d'administration (INSERT, UPDATE, DELETE).
+            </summary>
+        </member>
+        <member name="M:MyTools.BDConnection.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructeur privé, crée l'instance de MySqlConnection pour se connecter à la base de données.
+            </summary>
+            <param name="server">Nom du serveur (par exemple : localhost).</param>
+            <param name="bdd">Nom de la base de données.</param>
+            <param name="user">Nom d'utilisateur.</param>
+            <param name="pwd">Mot de passe.</param>
+        </member>
+        <member name="M:MyTools.BDConnection.InitConnection">
+            <summary>
+            Initialise une nouvelle connexion à la base de données.
+            </summary>
+        </member>
+        <member name="M:MyTools.BDConnection.GetBDConnection(System.String,System.String,System.String,System.String)">
+            <summary>
+            Fonction statique qui crée l'unique instance de la classe BDConnexion.
+            </summary>
+            <param name="server"> Nom du serveur (par exemple: localhost).</param>
+            <param name="bdd"> Nom de la base de données.</param>
+            <param name="user"> Nom d'utilisateur.</param>
+            <param name="pwd"> Mot de passe.</param>
+            <returns> Unique objet de la classe BDConnexion.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.GenerateConnectionString">
+            <summary>
+            Génère la chaîne de connexion à la base de données.
+            </summary>
+            <returns> La chaîne de connexion.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.Finalize">
+            <summary>
+            Destructeur appelé dès qu'il n'y a plus de référence sur un objet donné, 
+            ou dans n'importe quel ordre pendant la séquence d'arrêt.
+            </summary>
+        </member>
+        <member name="M:MyTools.BDConnection.GetNewMySqlCommand(System.String)">
+            <summary>
+            Génère une nouvelle instance de la classe MySqlCommand 
+            commande pour pouvoir manipuler une base de données (contient la requête et la connexion correspondante).
+            </summary>
+            <param name="myQuery"> Requête à exécuter sur la base de données.</param>
+            <returns> Nouvelle instance de la classe MySqlCommand crée pour répondre aux besoins d'une requête et une connexion à une BDD.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.GetDataTable(MySql.Data.MySqlClient.MySqlDataReader)">
+            <summary>
+            Création d'une DataTable en fonction du résultat d'une requête stockée dans un curseur MySqlDataReader.
+            </summary>
+            <param name="cursor"> Curseur contenant un résultat de requête.</param>
+            <returns> La DataTable construite avec les valeurs du curseur.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.ReqSelect(System.String)">
+            <summary>
+            Effectue une requête SELECT sur la base de données 
+            puis remplis un Dictionnaire : (clé : nomColonne, valeur : colonneValue).
+            </summary>
+            <param name="myQuery"> Requête à exécuter.</param>
+            <returns> Le Dictionnaire rempli avec le résultat de la requête.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.AdministrateBDD(System.String)">
+            <summary>
+            Exécute une requête d'administration de base de données (INSERT, UPDATE, DELETE).
+            </summary>
+            <param name="myQuery"> Requête à exécuter.</param>
+            <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.ReqInsert(System.String)">
+            <summary>
+            Permet d'exécuter une requête INSERT. 
+            </summary>
+            <param name="myQuery"> Requête à exécuter.</param>
+            <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.ReqUpdate(System.String)">
+            <summary>
+            Permet d'exécuter une requête UPDATE. 
+            </summary>
+            <param name="myQuery"> Requête à exécuter.</param>
+            <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
+        </member>
+        <member name="M:MyTools.BDConnection.ReqDelete(System.String)">
+            <summary>
+            Permet d'exécuter une requête DELETE. 
+            </summary>
+            <param name="myQuery"> Requête à exécuter.</param>
+            <returns>Chaîne contenant les informations sur le bon ou mauvais déroulement de la requête.</returns>
+        </member>
+        <member name="T:MyTools.DateManagement">
+            <summary>
+            Classe DateManagement : 
+            Permet d'effectuer des actions basiques sur une date, 
+            telles qu'obtenir le mois précédent, suivant, 
+            ou de savoir si un jour se trouve entre deux jours.
+            </summary>
+        </member>
+        <member name="M:MyTools.DateManagement.GetPreviousMonth">
+            <summary>
+            Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois précédent 
+            par rapport à la date d'aujourd'hui.
+            </summary>
+            <returns> Le mois précédent.</returns>
+        </member>
+        <member name="M:MyTools.DateManagement.GetPreviousMonth(System.DateTime)">
+            <summary>
+            Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois précédent 
+            par rapport à la date passée en paramètre.
+            </summary>
+            <param name="date"> Date pour laquelle on souhaite obtenir le mois précédent.</param>
+            <returns> Le mois précédent.</returns>
+        </member>
+        <member name="M:MyTools.DateManagement.GetNextMonth">
+            <summary>
+            Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois suivant
+            par rapport à la date d'aujourd'hui.
+            </summary>
+            <returns> Le mois suivant.</returns>
+        </member>
+        <member name="M:MyTools.DateManagement.GetNextMonth(System.DateTime)">
+            <summary>
+            Retourne sous forme d'une chaîne de 2 chiffres le numéro du mois suivant
+            par rapport à la date envoyée en paramètre.
+            </summary>
+            <param name="date"> Date pour laquelle il faut obtenir le mois suivant.</param>
+            <returns> Le mois suivant.</returns>
+        </member>
+        <member name="M:MyTools.DateManagement.Between(System.Int32,System.Int32)">
+            <summary>
+            Distingue si la date du jour se trouve entre deux jours passés en paramètre.
+            </summary>
+            <param name="day1"> Interval1 (numéro de jour).</param>
+            <param name="day2"> Interval2 (numéro de jour).</param>
+            <returns> Vrai si le jour de la date actuelle se situe entre les deux intervalles faux sinon.</returns>
+        </member>
+        <member name="M:MyTools.DateManagement.Between(System.Int32,System.Int32,System.DateTime)">
+            <summary>
+            Distingue si la date passée en paramètre se trouve entre deux jours également passés en paramètre.
+            </summary>
+            <param name="day1"> Interval1 (numéro de jour).</param>
+            <param name="day2"> Interval2 (numéro de jour).</param>
+            <param name="date"> Date pour laquelle le jour est à tester.</param>
+            <returns> Vrai si le jour de la date se trouve entre les deux intervalles faux sinon.</returns>
+        </member>
+        <member name="T:MyTools.DirAppend">
+            <summary>
+            Classe DirAppend. 
+            Permet de gérer un système de log en permettant l'écriture dans un ficher txt servant de log.
+            </summary>
+        </member>
+        <member name="M:MyTools.DirAppend.ShowLog(System.String)">
+            <summary>
+            Permet d'afficher le contenu du fichier dont le nom est passé en param.
+            </summary>
+            <param name="fileNamePlusExtension">Nom du fichier à ouvrir.</param>
+        </member>
+        <member name="M:MyTools.DirAppend.AppendText(System.String,System.String)">
+            <summary>
+            Ajoute du texte à un fichier existant.
+            </summary>
+            <param name="path">Chemin vers le fichier.</param>
+            <param name="logMessage">Informations à écire dans le fichier.</param>
+        </member>
+        <member name="M:MyTools.DirAppend.WriteLog(System.String,System.String)">
+            <summary>
+            Ecriture dans un fichier d'un chemin précis.
+            </summary>
+            <param name="path">Chemin vers le fichier.</param>
+            <param name="logMessage">Informations à écrire dans le fichier.</param>
+        </member>
+        <member name="M:MyTools.DirAppend.Log(System.String,System.IO.TextWriter)">
+            <summary>
+            Ecriture d'informations dans un fichier de logs.
+            </summary>
+            <param name="logMessage">Message à écrire dans le fichier.</param>
+            <param name="w">Contient le fichier dans lequel il faut écrire.</param>
+        </member>
+        <member name="M:MyTools.DirAppend.DumpLog(System.IO.StreamReader)">
+            <summary>
+            Permet d'afficher le contenu d'un fichier de logs.
+            </summary>
+            <param name="r">Permet d'accéder au contenu de la ligne.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="AdministrateBDD m&#233;thode" Url="html/e34e3e9a-0595-88b2-f47b-be158c14348d.htm" />
+  <HelpKINode Title="BDConnection classe">
+    <HelpKINode Title="BDConnection Classe" Url="html/05e8cd69-341b-aedd-3ff1-f2bb158b645c.htm" />
+    <HelpKINode Title="constructeur" Url="html/19ba5ee7-af56-4db7-3343-3a17d887b176.htm" />
+    <HelpKINode Title="constructeur" Url="html/969dba5e-1d1b-b00e-d086-572652d65d3d.htm" />
+    <HelpKINode Title="m&#233;thodes" Url="html/1105d4f1-0d03-319b-8c81-6650f9be2418.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BDConnection.AdministrateBDD m&#233;thode" Url="html/e34e3e9a-0595-88b2-f47b-be158c14348d.htm" />
+  <HelpKINode Title="BDConnection.BDConnection constructeur">
+    <HelpKINode Title="BDConnection Constructeur " Url="html/969dba5e-1d1b-b00e-d086-572652d65d3d.htm" />
+    <HelpKINode Title="BDConnection Constructeur " Url="html/19ba5ee7-af56-4db7-3343-3a17d887b176.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BDConnection.Finalize m&#233;thode" Url="html/0f7e50f9-108a-6434-c7ad-6d059f00f7cb.htm" />
+  <HelpKINode Title="BDConnection.GenerateConnectionString m&#233;thode" Url="html/ed39039c-be45-1223-37e6-702f009d2e4b.htm" />
+  <HelpKINode Title="BDConnection.GetBDConnection m&#233;thode" Url="html/f042660b-d53a-fa23-d745-bea3bb62b17b.htm" />
+  <HelpKINode Title="BDConnection.GetDataTable m&#233;thode" Url="html/8bcca27b-da15-98ce-ae3c-cb7381fbfaca.htm" />
+  <HelpKINode Title="BDConnection.GetNewMySqlCommand m&#233;thode" Url="html/a71bd884-2e35-c879-1e6f-65a6abf4babf.htm" />
+  <HelpKINode Title="BDConnection.InitConnection m&#233;thode" Url="html/e6b441b0-3194-ef80-607c-6e6f0d8c4ad7.htm" />
+  <HelpKINode Title="BDConnection.ReqDelete m&#233;thode" Url="html/fa32a559-91c6-ce69-53c7-03bbf12e8e51.htm" />
+  <HelpKINode Title="BDConnection.ReqInsert m&#233;thode" Url="html/51ce6c3e-9e21-3867-3ab9-8a439701c300.htm" />
+  <HelpKINode Title="BDConnection.ReqSelect m&#233;thode" Url="html/45feae97-2e60-deee-d575-c07483d58406.htm" />
+  <HelpKINode Title="BDConnection.ReqUpdate m&#233;thode" Url="html/2c5b3983-8a31-89ca-af16-03037176850e.htm" />
+  <HelpKINode Title="Between m&#233;thode" Url="html/db005f12-89e2-f7aa-1d49-9935e196f092.htm" />
+  <HelpKINode Title="DateManagement classe">
+    <HelpKINode Title="DateManagement Classe" Url="html/f7ff9366-b25d-892c-cee1-ffcc23787c3d.htm" />
+    <HelpKINode Title="constructeur" Url="html/4e28b758-b0ab-0ba2-e5c4-49d76090d3e8.htm" />
+    <HelpKINode Title="m&#233;thodes" Url="html/d9a1027a-734c-d831-3c1d-e0d29704ce02.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DateManagement.Between m&#233;thode" Url="html/db005f12-89e2-f7aa-1d49-9935e196f092.htm" />
+  <HelpKINode Title="DateManagement.DateManagement constructeur" Url="html/4e28b758-b0ab-0ba2-e5c4-49d76090d3e8.htm" />
+  <HelpKINode Title="DateManagement.GetNextMonth m&#233;thode" Url="html/7ecacc54-281f-6a7b-53be-753924fbb807.htm" />
+  <HelpKINode Title="DateManagement.GetPreviousMonth m&#233;thode" Url="html/c2e00bc2-28e3-5484-bc34-f81bccf34c53.htm" />
+  <HelpKINode Title="DirAppend classe">
+    <HelpKINode Title="DirAppend Classe" Url="html/2ce49826-c304-4aca-4c43-aa4774f20b77.htm" />
+    <HelpKINode Title="constructeur" Url="html/91655993-6de5-1bff-a7fa-9c97da2ef5b6.htm" />
+    <HelpKINode Title="m&#233;thodes" Url="html/650d1648-455a-ce7c-6c16-47de58cbae3f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DirAppend.DirAppend constructeur" Url="html/91655993-6de5-1bff-a7fa-9c97da2ef5b6.htm" />
+  <HelpKINode Title="DirAppend.DumpLog m&#233;thode" Url="html/b69ec46e-74d3-9bc4-1159-cd9b40d09747.htm" />
+  <HelpKINode Title="DirAppend.Log m&#233;thode" Url="html/22c95857-8e9f-92e9-a945-5bbc4ca21215.htm" />
+  <HelpKINode Title="DumpLog m&#233;thode" Url="html/b69ec46e-74d3-9bc4-1159-cd9b40d09747.htm" />
+  <HelpKINode Title="Finalize m&#233;thode" Url="html/0f7e50f9-108a-6434-c7ad-6d059f00f7cb.htm" />
+  <HelpKINode Title="GenerateConnectionString m&#233;thode" Url="html/ed39039c-be45-1223-37e6-702f009d2e4b.htm" />
+  <HelpKINode Title="GetBDConnection m&#233;thode" Url="html/f042660b-d53a-fa23-d745-bea3bb62b17b.htm" />
+  <HelpKINode Title="GetDataTable m&#233;thode" Url="html/8bcca27b-da15-98ce-ae3c-cb7381fbfaca.htm" />
+  <HelpKINode Title="GetNewMySqlCommand m&#233;thode" Url="html/a71bd884-2e35-c879-1e6f-65a6abf4babf.htm" />
+  <HelpKINode Title="GetNextMonth m&#233;thode" Url="html/7ecacc54-281f-6a7b-53be-753924fbb807.htm" />
+  <HelpKINode Title="GetPreviousMonth m&#233;thode" Url="html/c2e00bc2-28e3-5484-bc34-f81bccf34c53.htm" />
+  <HelpKINode Title="InitConnection m&#233;thode" Url="html/e6b441b0-3194-ef80-607c-6e6f0d8c4ad7.htm" />
+  <HelpKINode Title="Log m&#233;thode" Url="html/22c95857-8e9f-92e9-a945-5bbc4ca21215.htm" />
+  <HelpKINode Title="MyTools espace de nom" Url="html/63cc3e57-11e6-c7f9-6a27-03b6e788711f.htm" />
+  <HelpKINode Title="MyTools.BDConnection classe" Url="html/05e8cd69-341b-aedd-3ff1-f2bb158b645c.htm" />
+  <HelpKINode Title="MyTools.DateManagement classe" Url="html/f7ff9366-b25d-892c-cee1-ffcc23787c3d.htm" />
+  <HelpKINode Title="MyTools.DirAppend classe" Url="html/2ce49826-c304-4aca-4c43-aa4774f20b77.htm" />
+  <HelpKINode Title="ReqDelete m&#233;thode" Url="html/fa32a559-91c6-ce69-53c7-03bbf12e8e51.htm" />
+  <HelpKINode Title="ReqInsert m&#233;thode" Url="html/51ce6c3e-9e21-3867-3ab9-8a439701c300.htm" />
+  <HelpKINode Title="ReqSelect m&#233;thode" Url="html/45feae97-2e60-deee-d575-c07483d58406.htm" />
+  <HelpKINode Title="ReqUpdate m&#233;thode" Url="html/2c5b3983-8a31-89ca-af16-03037176850e.htm" />
+</HelpKI>

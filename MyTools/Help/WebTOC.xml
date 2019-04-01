@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="bbf574af-1a6d-4f90-8916-56726d34bf90" Title="MyTools" Url="html/63cc3e57-11e6-c7f9-6a27-03b6e788711f.htm">
+    <HelpTOCNode Id="02c1828e-ebf2-4fcd-a202-3e31704ece32" Title="BDConnection Classe" Url="html/05e8cd69-341b-aedd-3ff1-f2bb158b645c.htm">
+      <HelpTOCNode Title="BDConnection Constructeur " Url="html/969dba5e-1d1b-b00e-d086-572652d65d3d.htm" />
+      <HelpTOCNode Title="BDConnection Constructeur " Url="html/19ba5ee7-af56-4db7-3343-3a17d887b176.htm" />
+      <HelpTOCNode Id="c771bb82-0780-4be8-af60-83797b3a0b85" Title="BDConnection M&#233;thodes" Url="html/1105d4f1-0d03-319b-8c81-6650f9be2418.htm">
+        <HelpTOCNode Title="AdministrateBDD M&#233;thode " Url="html/e34e3e9a-0595-88b2-f47b-be158c14348d.htm" />
+        <HelpTOCNode Title="Finalize M&#233;thode " Url="html/0f7e50f9-108a-6434-c7ad-6d059f00f7cb.htm" />
+        <HelpTOCNode Title="GenerateConnectionString M&#233;thode " Url="html/ed39039c-be45-1223-37e6-702f009d2e4b.htm" />
+        <HelpTOCNode Title="GetBDConnection M&#233;thode " Url="html/f042660b-d53a-fa23-d745-bea3bb62b17b.htm" />
+        <HelpTOCNode Title="GetDataTable M&#233;thode " Url="html/8bcca27b-da15-98ce-ae3c-cb7381fbfaca.htm" />
+        <HelpTOCNode Title="GetNewMySqlCommand M&#233;thode " Url="html/a71bd884-2e35-c879-1e6f-65a6abf4babf.htm" />
+        <HelpTOCNode Title="InitConnection M&#233;thode " Url="html/e6b441b0-3194-ef80-607c-6e6f0d8c4ad7.htm" />
+        <HelpTOCNode Title="ReqDelete M&#233;thode " Url="html/fa32a559-91c6-ce69-53c7-03bbf12e8e51.htm" />
+        <HelpTOCNode Title="ReqInsert M&#233;thode " Url="html/51ce6c3e-9e21-3867-3ab9-8a439701c300.htm" />
+        <HelpTOCNode Title="ReqSelect M&#233;thode " Url="html/45feae97-2e60-deee-d575-c07483d58406.htm" />
+        <HelpTOCNode Title="ReqUpdate M&#233;thode " Url="html/2c5b3983-8a31-89ca-af16-03037176850e.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a09eb204-f451-4b62-8edc-b399680fa9c2" Title="DateManagement Classe" Url="html/f7ff9366-b25d-892c-cee1-ffcc23787c3d.htm">
+      <HelpTOCNode Title="DateManagement Constructeur " Url="html/4e28b758-b0ab-0ba2-e5c4-49d76090d3e8.htm" />
+      <HelpTOCNode Id="9d350f68-6f10-4452-a1fa-2462770faa78" Title="DateManagement M&#233;thodes" Url="html/d9a1027a-734c-d831-3c1d-e0d29704ce02.htm">
+        <HelpTOCNode Id="3a6dca63-c65e-4321-9ad9-77fae25f721b" Title="Between M&#233;thode " Url="html/db005f12-89e2-f7aa-1d49-9935e196f092.htm">
+          <HelpTOCNode Title="Between M&#233;thode (Int32, Int32)" Url="html/fad90482-7c19-3528-6b32-5314732092f1.htm" />
+          <HelpTOCNode Title="Between M&#233;thode (Int32, Int32, DateTime)" Url="html/ffb9441e-938c-77b5-160c-a4fa481001a1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b0867026-3108-401c-b60e-68657dc1667c" Title="GetNextMonth M&#233;thode " Url="html/7ecacc54-281f-6a7b-53be-753924fbb807.htm">
+          <HelpTOCNode Title="GetNextMonth M&#233;thode " Url="html/779ccb0a-1b4c-fb5e-eac9-83f3a64fafc0.htm" />
+          <HelpTOCNode Title="GetNextMonth M&#233;thode (DateTime)" Url="html/6983b333-1a44-1b83-5ab6-b187ba3a1f61.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="61d4478f-cf26-466c-a1e8-ae9591b65c3d" Title="GetPreviousMonth M&#233;thode " Url="html/c2e00bc2-28e3-5484-bc34-f81bccf34c53.htm">
+          <HelpTOCNode Title="GetPreviousMonth M&#233;thode " Url="html/fb657142-a825-b2c3-9933-6c1c22a6b075.htm" />
+          <HelpTOCNode Title="GetPreviousMonth M&#233;thode (DateTime)" Url="html/850f8ce0-b387-cc46-fcdc-b054bae4131f.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c5d0db91-7000-46cb-b2d0-7306261d540a" Title="DirAppend Classe" Url="html/2ce49826-c304-4aca-4c43-aa4774f20b77.htm">
+      <HelpTOCNode Title="DirAppend Constructeur " Url="html/91655993-6de5-1bff-a7fa-9c97da2ef5b6.htm" />
+      <HelpTOCNode Id="430c498d-593e-4c43-9fd2-0de79ffb79dd" Title="DirAppend M&#233;thodes" Url="html/650d1648-455a-ce7c-6c16-47de58cbae3f.htm">
+        <HelpTOCNode Title="DumpLog M&#233;thode " Url="html/b69ec46e-74d3-9bc4-1159-cd9b40d09747.htm" />
+        <HelpTOCNode Title="Log M&#233;thode " Url="html/22c95857-8e9f-92e9-a945-5bbc4ca21215.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
