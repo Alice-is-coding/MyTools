@@ -1,7 +1,6 @@
 /**
- * Script : Jeux de tests pour la bibliothèque de classes MyTools, en particulier en ce qui concerne les opérations sur les dates.
- * Author : Alice BORD
- * Email : alice.bord1@gmail.com
+ * Script : Jeux de tests pour la bibliothÃ¨que de classes MyTools, en particulier en ce qui concerne les opÃ©rations sur les dates.
+ * Author : Alice B.
  * Date : 31/03/2019
  */
 
